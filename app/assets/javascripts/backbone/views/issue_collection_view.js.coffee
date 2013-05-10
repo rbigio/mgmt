@@ -35,7 +35,6 @@ class IssueView extends Backbone.View
     @$el.removeClass("accepted not_started rejected finished delivered started")
     @$el.addClass(status)
     @$el.find('a.js-status').each (index, e) ->
-      debugger;
       elem = $(e)
       action = elem.attr('data_action')
       if actions[status].indexOf(action) isnt -1

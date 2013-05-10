@@ -1,7 +1,7 @@
 # Imports
 
 ProjectCollectionView = window.Mgmt.Views.ProjectCollectionView
-IssueCollectionView = window.Mgmt.Views.IssueCollectionView
+IssuesView = window.Mgmt.Views.IssuesView
 
 class ProjectRouter extends Backbone.Router
 
@@ -21,6 +21,8 @@ class ProjectRouter extends Backbone.Router
 
   show: (project)->
     @project = project
+    issuesView = new IssuesView(project: @project)
+    issuesView.render()
     issues = @github.getIssues(@organization, @project)
     issues.list({}, @_onIssuesResponse)
 
@@ -52,12 +54,7 @@ class ProjectRouter extends Backbone.Router
         message: "There was an error fetching the issues"
       )
       return
-
-    issueCollection = new IssueCollectionView
-      project: @project
-      model: issues
-      el: $("#issues")
-    issueCollection.render()
+    Backbone.trigger('issues:response', issues:issues);
 
 # Exports
 

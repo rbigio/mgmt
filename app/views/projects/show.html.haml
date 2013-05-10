@@ -1,4 +1,10 @@
 %h1.capitalize= @project.name
+.filters
+  .pull-right#pull-requests
+    Show Pull Requests
+    .btn-group{'data-toggle' => "buttons-radio"}
+      %button.btn.btn-mini.btn-success.js-on ON
+      %button.btn.btn-mini.btn-danger.js-off OFF
 %ul#issues
   - @project.open_issues.each do |issue|
     = render partial: 'projects/issue', locals: { issue: issue }

@@ -10,6 +10,7 @@ class Issue extends Backbone.Model
   initialize: (options)->
     @project = options.project
     @github = options.github
+    @pull_request = options.pull_request
 
   updateWorkedHours: (workedHours) ->
     old = parseFloat(@get('worked_hours'))

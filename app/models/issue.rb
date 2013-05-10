@@ -21,6 +21,15 @@ class Issue < ActiveRecord::Base
     bug
   )
 
+  TRANSITIONS = {
+    "not_started" => ["start"],
+    "started" => ["finish"],
+    "finished" => ["accept", "reject"],
+    "accepted" => ["deliver"],
+    "rejected" => ["start"],
+    "delivered" => []
+  }
+
   # Validations
 
   validates_presence_of :number

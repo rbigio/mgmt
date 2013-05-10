@@ -14,7 +14,7 @@
       %div
         .item.pull-left
           -::Issue::ACTIONS.each do |action, status|
-            %a.js-status{href: '#', data_value: "#{status}"}= "#{action}"
+            %a.js-status{href: '#', data_status: "#{status}", data_action: "#{action}", class: "#{action_visibility(issue, action)}"}= "#{action}"
         .item.pull-left
           %select.type-switch.js-type
             - Issue::TYPE.each do |type|

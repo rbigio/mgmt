@@ -55,6 +55,16 @@ ActiveRecord::Schema.define(version: 20130510183231) do
 
   add_index "projects", ["organization", "name"], name: "index_projects_on_organization_and_name", unique: true, using: :btree
 
+  create_table "teams", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "teams", ["project_id"], name: "index_teams_on_project_id", using: :btree
+  add_index "teams", ["user_id"], name: "index_teams_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email"
     t.string   "name"

@@ -7,6 +7,9 @@ en:
       future_date: 'Date cannot be in the future'
 
   views:
+    filters:
+      pull_requests: "Show Pull Requests"
+
     navbar:
       projects: "Projects"
       search: "Search ..."

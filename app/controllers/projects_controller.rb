@@ -19,6 +19,10 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def settings
+    @project = Project.where(project_attributes).first
+  end
+
   private
 
     def project_attributes

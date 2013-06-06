@@ -11,20 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130314192721) do
+ActiveRecord::Schema.define(version: 20130510145102) do
 
   create_table "issues", force: true do |t|
-    t.string   "status",          default: "not_started"
-    t.string   "issue_type",      default: "feature"
+    t.string   "status",           default: "not_started"
+    t.string   "issue_type",       default: "feature"
     t.decimal  "estimated_hours"
     t.integer  "number"
     t.integer  "project_id"
     t.string   "github_status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "milestone_number"
   end
 
-  add_index "issues", ["project_id"], name: "index_issues_on_project_id"
+  add_index "issues", ["project_id"], name: "index_issues_on_project_id", using: :btree
+
+  create_table "milestones", force: true do |t|
+    t.integer  "number"
+    t.date     "start_date"
+    t.date     "due_date"
+    t.decimal  "estimated_hours"
+    t.decimal  "client_estimated_hours"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "projects", force: true do |t|
     t.string   "organization"
@@ -33,7 +45,17 @@ ActiveRecord::Schema.define(version: 20130314192721) do
     t.datetime "updated_at"
   end
 
-  add_index "projects", ["organization", "name"], name: "index_projects_on_organization_and_name", unique: true
+  add_index "projects", ["organization", "name"], name: "index_projects_on_organization_and_name", unique: true, using: :btree
+
+  create_table "teams", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "teams", ["project_id"], name: "index_teams_on_project_id", using: :btree
+  add_index "teams", ["user_id"], name: "index_teams_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
@@ -54,7 +76,7 @@ ActiveRecord::Schema.define(version: 20130314192721) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
+  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
 
   create_table "worked_hours_entries", force: true do |t|
     t.decimal "amount"
@@ -63,8 +85,8 @@ ActiveRecord::Schema.define(version: 20130314192721) do
     t.date    "date"
   end
 
-  add_index "worked_hours_entries", ["date"], name: "index_worked_hours_entries_on_date"
-  add_index "worked_hours_entries", ["issue_id"], name: "index_worked_hours_entries_on_issue_id"
-  add_index "worked_hours_entries", ["user_id"], name: "index_worked_hours_entries_on_user_id"
+  add_index "worked_hours_entries", ["date"], name: "index_worked_hours_entries_on_date", using: :btree
+  add_index "worked_hours_entries", ["issue_id"], name: "index_worked_hours_entries_on_issue_id", using: :btree
+  add_index "worked_hours_entries", ["user_id"], name: "index_worked_hours_entries_on_user_id", using: :btree
 
 end

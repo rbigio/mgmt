@@ -5,6 +5,8 @@ en:
   models:
     worked_hours_entry:
       future_date: 'Date cannot be in the future'
+    milestone:
+      overlap: 'Dates cannot overlap'
 
   views:
     navbar:
@@ -46,3 +48,17 @@ en:
         delivered: 'Delivered'
       loading:
         title: 'Loading title ...'
+
+    milestones:
+      loading:
+        title: 'Loading title ...'
+      settings:
+        start_date: 'Start date'
+        estimated_hours: 'Estimated hours'
+        client_estimated_hours: 'Client estimated hours'
+        submit: 'Save changes'
+      update:
+        succeed: 'Changes applied'
+        failed: 'Date error'
+      accordion:
+        unassigned: 'Unassigned'

@@ -11,7 +11,11 @@ Mgmt::Application.routes.draw do
   resources :projects, only: [:index, :show] do
     member do
       get :settings
-      post :update_settings
+    end
+    resources :milestones, only: [] do 
+      collection do
+        patch :update
+      end
     end
     resources :issues, only: [:update] do
       member do

@@ -1,9 +1,22 @@
 %h1.capitalize
   = @project.name
-  %a{href: settings_project_url(@project)} settings
-%ul#issues
-  - if @project.current_milestone.nil? 
-    no current milestone
-  - else
-    - @project.current_milestone.issues.each do |issue|
-      = render partial: 'projects/issue', locals: { issue: issue }
+  %a{href: settings_project_url(@project.name)} settings
+.row-fluid
+  .current-milestone.span6
+    %ul#issues
+      - if @project.current_milestone.nil?
+        no current milestone
+      - else
+        %a.accordion-toggle.js-milestone-title
+          = t('views.milestones.accordion.unassigned')
+        - @project.current_milestone.issues.each do |issue|
+          .div= render partial: 'projects/issue', locals: { issue: issue }
+  .backlog.span6
+    .accordion.milestones#milestonesAccordion
+      - @project.backlog.each do |number, issues|
+        .accordion-group.milestone.js-milestone
+          .accordion-heading
+            = render partial: 'milestone_title', locals: { number: number }
+          .accordion-body.collapse.in{ id: "milestone_#{number}"}
+            - issues.each do |issue|
+              = render partial: 'projects/issue', locals: { issue: issue }

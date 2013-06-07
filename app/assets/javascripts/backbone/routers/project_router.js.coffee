@@ -2,12 +2,14 @@
 
 ProjectCollectionView = window.Mgmt.Views.ProjectCollectionView
 IssueCollectionView = window.Mgmt.Views.IssueCollectionView
+MilestoneCollectionView = window.Mgmt.Views.MilestoneCollectionView
 
 class ProjectRouter extends Backbone.Router
 
   routes:
-    "projects"            : "index"
-    "projects/:project"   : "show"
+    "projects"                     : "index"
+    "projects/:project"            : "show"
+    "projects/:project/settings"   : "settings"
 
   initialize: ->
     @organization = $("body").data("organization")
@@ -23,6 +25,13 @@ class ProjectRouter extends Backbone.Router
     @project = project
     issues = @github.getIssues(@organization, @project)
     issues.list({}, @_onIssuesResponse)
+    milestones = @github.getMilestones(@organization, @project)
+    milestones.list({}, @_onMilestonesResponse)
+
+  settings: (project)->
+    @project = project
+    milestones = @github.getMilestones(@organization, @project)
+    milestones.list({}, @_onMilestonesResponse)
 
   # Private methods
 
@@ -58,6 +67,19 @@ class ProjectRouter extends Backbone.Router
       model: issues
       el: $("#issues")
     issueCollection.render()
+
+  _onMilestonesResponse: (error, milestones) =>
+    if error
+      Backbone.trigger('alert:message',
+        message: "There was an error fetching the milestones"
+      )
+      return
+
+    milestoneCollection = new MilestoneCollectionView
+      project: @project
+      model: milestones
+      el: $("#milestones")
+    milestoneCollection.render()
 
 # Exports
 

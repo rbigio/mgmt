@@ -17,6 +17,7 @@ gem 'app_configuration'
 gem 'unicorn'
 gem 'foreman'
 gem 'coveralls', require: false
+gem 'option'
 
 group :assets do
   gem 'sprockets-rails',  github: 'rails/sprockets-rails'

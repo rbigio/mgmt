@@ -17,7 +17,7 @@ class ProjectRouter extends Backbone.Router
       auth: "oauth"
       token: $("body").data("token")
 
-  index: -> 
+  index: ->
     user = @github.getUser()
     user.orgRepos(@organization, @_onOrgRepoReponse)
 
@@ -41,7 +41,7 @@ class ProjectRouter extends Backbone.Router
         message: "There was an error fetching the projects repositories from github"
       )
       return
-    
+
     publicProjects = new ProjectCollectionView
       el: $('#public-projects')
       privacy: 'public'
@@ -80,6 +80,8 @@ class ProjectRouter extends Backbone.Router
       model: milestones
       el: $("#milestones")
     milestoneCollection.render()
+
+    $('.js-milestone[data-milestone-number=-1] .js-milestone-title').text(I18n.t('views.milestones.unassigned'))
 
 # Exports
 

@@ -18,6 +18,7 @@ gem 'unicorn'
 gem 'foreman'
 gem 'coveralls', require: false
 gem 'option'
+gem 'i18n-js'
 
 group :assets do
   gem 'sprockets-rails',  github: 'rails/sprockets-rails'

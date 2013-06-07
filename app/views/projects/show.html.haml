@@ -1,20 +1,20 @@
 %h1.capitalize
   = @project.name
   %a{href: settings_project_url(@project.name)} settings
-.row-fluid
-  .current-milestone.span6
-    %ul#issues
-      - if @project.current_milestone.nil?
-        no current milestone
-      - else
+.row-fluid#milestones
+  - if !@project.current_milestone
+    .span6 no current milestone
+  - else
+    .current-milestone.js-milestone.span6{'data-milestone-number' => "#{@project.current_milestone.number}"}
+      %ul#issues
         %a.accordion-toggle.js-milestone-title
-          = t('views.milestones.accordion.unassigned')
+          = t('views.milestones.loading.title')
         - @project.current_milestone.issues.each do |issue|
           .div= render partial: 'projects/issue', locals: { issue: issue }
   .backlog.span6
     .accordion.milestones#milestonesAccordion
       - @project.backlog.each do |number, issues|
-        .accordion-group.milestone.js-milestone
+        .accordion-group.milestone.js-milestone{'data-milestone-number' => "#{number}"}
           .accordion-heading
             = render partial: 'milestone_title', locals: { number: number }
           .accordion-body.collapse.in{ id: "milestone_#{number}"}

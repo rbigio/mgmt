@@ -9,6 +9,9 @@ en:
       overlap: 'Dates cannot overlap'
 
   views:
+    filters:
+      pull_requests: "Show Pull Requests"
+
     navbar:
       projects: "Projects"
       search: "Search ..."

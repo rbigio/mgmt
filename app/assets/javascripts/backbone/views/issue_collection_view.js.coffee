@@ -11,11 +11,13 @@ class IssueView extends Backbone.View
     "change .js-type"     : "updateType"
 
   initialize: (options) ->
-    @model = new Issue(github: @model, project: options.project)
+    @model = new Issue(github: @model, project: options.project, pull_request: @model.pull_request.html_url)
     @model.number = @$el.data('number')
     @model.status = @$el.data('status')
     @model.id = @$el.data('id')
     @model.on('workedHoursSaveError', @onWorkedHoursSaveError)
+    @listenTo(Backbone, "pull-requests:hide", @_hide_if_pull_request)
+    @listenTo(Backbone, "pull-requests:show", @_show)
 
   # Event Handlers
 
@@ -81,7 +83,6 @@ class IssueView extends Backbone.View
       message: "There was an error saving the estimated hours."
     )
 
-
   # View Methods
 
   render: ->
@@ -96,6 +97,13 @@ class IssueView extends Backbone.View
     title = @model.github.title
     title = title.substring(0, 48) + " ..." if title.length > 49
     title
+
+  _hide_if_pull_request: =>
+    if @model.get('pull_request') isnt null
+      $(@el).hide()
+
+  _show: =>
+    $(@el).show()    
 
 class IssueCollectionView extends Backbone.View
 

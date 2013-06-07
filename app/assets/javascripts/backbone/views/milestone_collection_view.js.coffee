@@ -42,3 +42,4 @@ class MilestoneCollectionView extends Backbone.View
 
 window.Mgmt.Views.MilestoneView = MilestoneView
 window.Mgmt.Views.MilestoneCollectionView = MilestoneCollectionView
+

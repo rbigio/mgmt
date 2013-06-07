@@ -1,6 +1,14 @@
 %h1.capitalize
   = @project.name
   %a{href: settings_project_url(@project.name)} settings
+.filters
+  .pull-right#pull-requests
+    = t("views.filters.pull_requests")
+    .btn-group{'data-toggle' => "buttons-radio"}
+      %button.btn.btn-mini.btn-success.js-on
+        = t("views.filters.on")
+      %button.btn.btn-mini.btn-danger.js-off
+        = t("views.filters.off")
 .row-fluid#milestones
   %div#issues
     %div

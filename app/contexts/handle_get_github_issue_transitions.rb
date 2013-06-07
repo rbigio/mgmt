@@ -16,3 +16,5 @@ class HandleGetGithubIssueTransitions
   def get_transitions
     TRANSITIONS[@issue.status]
   end
+
+end

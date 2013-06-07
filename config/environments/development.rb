@@ -34,4 +34,7 @@ Mgmt::Application.configure do
   config.github = OpenStruct.new
   config.github.subscribe_to_events = false
 
+  # Mailer configuration
+  config.action_mailer.delivery_method = :test
+
 end

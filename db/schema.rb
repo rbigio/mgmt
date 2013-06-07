@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130510145102) do
+ActiveRecord::Schema.define(version: 20130510183231) do
+
+  create_table "alerts", force: true do |t|
+    t.integer  "milestone_id"
+    t.string   "alert_type"
+    t.decimal  "metric"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "issues", force: true do |t|
     t.string   "status",           default: "not_started"

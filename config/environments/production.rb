@@ -71,4 +71,23 @@ Mgmt::Application.configure do
   # Github
   config.github = OpenStruct.new
   config.github.subscribe_to_events = true
+
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_options = {from: 'mailer@wolox.com.ar'}
+  # Mailer configuration
+  config.action_mailer.default_url_options = { :host => "localhost:3001" }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => 'smtp.mandrillapp.com',
+    :port                 => 587,
+    :domain               => 'wolox.com.ar',
+    :user_name            => 'mailer@wolox.com.ar',
+    :password             => '491Eb0tWRBFIjfWkPwgNNA',
+    :authentication       => 'login',
+    :openssl_verify_mode => 'none',
+    :enable_starttls_auto => false,
+  }
+
 end

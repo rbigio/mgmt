@@ -1,0 +1,5 @@
+%h1= @alert.alert_type
+.property
+  %span= "metric #{@alert.metric}"
+  %span= "metric #{@alert.milestone.project.name}"
+  %span= "metric #{@alert.milestone.number}"

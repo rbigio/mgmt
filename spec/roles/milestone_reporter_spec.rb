@@ -4,7 +4,7 @@ describe MilestoneReporter do
 
   let!(:user)                { create(:user)}
   let!(:project)             { create(:project)}
-  let!(:milestone)           { create(:milestone) }
+  let!(:milestone)           { create(:milestone, project: project) }
   let!(:open_issues)         { create_list(:issue, 1, project: project, milestone_number: milestone.number, status: 'not_started') }
   let!(:delivered_issues)    { create_list(:issue, 3, project: project, milestone_number: milestone.number, status: 'delivered') }
   subject(:reporter) { MilestoneReporter.new(milestone) }

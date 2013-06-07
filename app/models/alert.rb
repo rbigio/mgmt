@@ -12,4 +12,7 @@ class Alert < ActiveRecord::Base
 
   belongs_to :milestone
 
+  def to_s
+    "[milestone= #{milestone}, alert_type= #{alert_type}, metric= #{metric}]"
+  end
 end

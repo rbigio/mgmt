@@ -9,9 +9,15 @@ class MilestoneReporter < SimpleDelegator
 
   def create_alerts(threshold)
     alerts = []
-    alerts ||= worked_hours_evaluation(threshold)
-    alerts ||= real_time_evaluation(threshold)
-    alerts ||= end_milestone_evaluation(threshold)
+
+    alert = worked_hours_evaluation(threshold)
+    alerts << alert unless alert.nil?
+
+    alert = real_time_evaluation(threshold)
+    alerts << alert unless alert.nil?
+
+    alert = end_milestone_evaluation(threshold)
+    alerts << alert unless alert.nil?
     alerts
   end
 

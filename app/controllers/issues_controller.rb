@@ -21,12 +21,6 @@ class IssuesController < ApplicationController
     end 
   end
     
-  def index
-    issue = Issue.find(params[:id])
-    @transitions = HandleGetGithubIssueTransitions.new(issue).get_trasitions
-    index!
-  end
-
   private
 
     def resource_params

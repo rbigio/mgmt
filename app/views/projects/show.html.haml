@@ -9,22 +9,22 @@
         = t("views.filters.on")
       %button.btn.btn-mini.btn-danger.js-off
         = t("views.filters.off")
-.row-fluid
-  .current-milestone.span6
-    %ul#issues
-      - if @project.current_milestone.nil?
-        no current milestone
+.row-fluid#milestones
+  %div#issues
+    %div
+      - if !@project.current_milestone
+        .span6 no current milestone
       - else
-        %a.accordion-toggle.js-milestone-title
-          = t('views.milestones.accordion.unassigned')
-        - @project.current_milestone.issues.each do |issue|
-          .div= render partial: 'projects/issue', locals: { issue: issue }
-  .backlog.span6
-    .accordion.milestones#milestonesAccordion
-      - @project.backlog.each do |number, issues|
-        .accordion-group.milestone.js-milestone
-          .accordion-heading
-            = render partial: 'milestone_title', locals: { number: number }
-          .accordion-body.collapse.in{ id: "milestone_#{number}"}
-            - issues.each do |issue|
-              = render partial: 'projects/issue', locals: { issue: issue }
+        .current-milestone.js-milestone.span6{'data-milestone-number' => "#{@project.current_milestone.number}"}
+          %a.accordion-toggle.js-milestone-title= t('views.milestones.loading.title')
+          - @project.current_milestone.issues.each do |issue|
+            .div= render partial: 'projects/issue', locals: { issue: issue }
+    .backlog.span6
+      .accordion.milestones#milestonesAccordion
+        - @project.backlog.each do |number, issues|
+          .accordion-group.milestone.js-milestone{'data-milestone-number' => "#{number}"}
+            .accordion-heading
+              = render partial: 'milestone_title', locals: { number: number }
+            .accordion-body.collapse.in{ id: "milestone_#{number}"}
+              - issues.each do |issue|
+                = render partial: 'projects/issue', locals: { issue: issue }

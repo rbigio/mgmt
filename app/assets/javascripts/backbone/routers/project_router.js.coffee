@@ -1,8 +1,9 @@
 # Imports
 
 ProjectCollectionView = window.Mgmt.Views.ProjectCollectionView
+
 IssuesView = window.Mgmt.Views.IssuesView
-#IssueCollectionView = window.Mgmt.Views.IssueCollectionView
+IssueCollectionView = window.Mgmt.Views.IssueCollectionView
 MilestoneCollectionView = window.Mgmt.Views.MilestoneCollectionView
 
 class ProjectRouter extends Backbone.Router
@@ -78,6 +79,8 @@ class ProjectRouter extends Backbone.Router
       model: milestones
       el: $("#milestones")
     milestoneCollection.render()
+
+    $('.js-milestone[data-milestone-number=-1] .js-milestone-title').text(I18n.t('views.milestones.unassigned'))
 
 # Exports
 

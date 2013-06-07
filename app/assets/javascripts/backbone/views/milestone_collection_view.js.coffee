@@ -12,7 +12,11 @@ class MilestoneView extends Backbone.View
   # View Methods
 
   render: ->
+<<<<<<< HEAD
     @$('.js-milestone-title').attr("title", @model.github.title)
+=======
+    @$('.js-milestone-title').attr("title", @model.github.milestone_title)
+>>>>>>> Merge pull request mgmt-18
     @$('.js-milestone-due_date').html(@model.github.end_date)
     @$('.js-milestone-title').html(@milestone_title)
     @$('.js-milestone-link').attr('href', @model.github.html_url)
@@ -32,13 +36,23 @@ class MilestoneCollectionView extends Backbone.View
 
   render: ->
     for milestone in @model
+<<<<<<< HEAD
       milestoneView = new MilestoneView 
         project: @project
         el: @$("[data-number=#{milestone.number}]")
+=======
+      milestoneView = new MilestoneView
+        project: @project
+        el: @$("[data-milestone-number=#{milestone.number}]")
+>>>>>>> Merge pull request mgmt-18
         model: milestone
       milestoneView.render()
 
 # Exports
 
 window.Mgmt.Views.MilestoneView = MilestoneView
+<<<<<<< HEAD
 window.Mgmt.Views.MilestoneCollectionView = MilestoneCollectionView
+=======
+window.Mgmt.Views.MilestoneCollectionView = MilestoneCollectionView
+>>>>>>> Merge pull request mgmt-18

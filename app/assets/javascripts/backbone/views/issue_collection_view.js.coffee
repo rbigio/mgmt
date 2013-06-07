@@ -22,11 +22,28 @@ class IssueView extends Backbone.View
   # Event Handlers
 
   updateStatus: (event) ->
-    status = $(event.target).attr("data-value")
+    actions = {
+      "not_started": ["start"]
+      "started": ["finish"]
+      "finished": ["accept", "reject"]
+      "accepted": ["deliver"]
+      "rejected": ["deliver"]
+      "delivered": ["start"]
+    }
+
+    status = $(event.target).attr("data_status")
     @model.set('status', status)
     @model.save({}, error: @onStatusSaveError)
     @$el.removeClass("accepted not_started rejected finished delivered started")
     @$el.addClass(status)
+    @$el.find('a.js-status').each (index, e) ->
+      elem = $(e)
+      action = elem.attr('data_action')
+      if actions[status].indexOf(action) isnt -1
+        elem.removeClass('hide')
+      else
+        elem.addClass('hide')
+  
 
   updateType: (event) ->
     type = $(event.target).find("option:selected").val()

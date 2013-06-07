@@ -1,9 +1,10 @@
 %h1.capitalize
   = @project.name
   %a{href: settings_project_url(@project.name)} settings
-.row-fluid
+
+.row-fluid#issues
   .current-milestone.span6
-    %ul#issues
+    %div
       - if @project.current_milestone.nil?
         no current milestone
       - else

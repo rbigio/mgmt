@@ -31,7 +31,7 @@ class IssueView extends Backbone.View
       "delivered": ["start"]
     }
 
-    status = $(event.target).attr("data_status")
+    status = $(event.target).data("status")
     @model.set('status', status)
     @model.save({}, error: @onStatusSaveError)
     @$el.removeClass("accepted not_started rejected finished delivered started")

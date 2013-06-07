@@ -13,8 +13,7 @@ class IssuesController < ApplicationController
 
   def update
     issue = Issue.find(params[:id])
-    issue.status=params[:status]
-    if HandleGithubIssueUpdateContext.new(current_user.github, issue).handle_issue
+    if HandleGithubIssueUpdateContext.new(current_user.github, issue,params[:issue]).handle_issue
       render json: {}, status: 200
     else
       render json: {}, status: 500

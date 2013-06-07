@@ -6,6 +6,8 @@ class Issue extends Backbone.Model
 
   urlRoot: ->
     "/projects/#{@project}/issues"
+  
+  paramRoot: "issue"
 
   initialize: (options)->
     @project = options.project

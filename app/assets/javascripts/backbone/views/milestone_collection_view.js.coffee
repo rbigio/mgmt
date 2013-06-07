@@ -12,7 +12,7 @@ class MilestoneView extends Backbone.View
   # View Methods
 
   render: ->
-    @$('.js-milestone-title').attr("title", @model.github.title)
+    @$('.js-milestone-title').attr("title", @model.github.milestone_title)
     @$('.js-milestone-due_date').html(@model.github.end_date)
     @$('.js-milestone-title').html(@milestone_title)
     @$('.js-milestone-link').attr('href', @model.github.html_url)
@@ -32,9 +32,9 @@ class MilestoneCollectionView extends Backbone.View
 
   render: ->
     for milestone in @model
-      milestoneView = new MilestoneView 
+      milestoneView = new MilestoneView
         project: @project
-        el: @$("[data-number=#{milestone.number}]")
+        el: @$("[data-milestone-number=#{milestone.number}]")
         model: milestone
       milestoneView.render()
 

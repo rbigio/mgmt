@@ -23,10 +23,10 @@ en:
     issues:
       created_at: 'Created'
       updated_at: 'Updated'
-      estimated: 
+      estimated:
         short: 'EH'
         long: 'Estimated hours'
-      worked: 
+      worked:
         short: 'WH'
         long: 'Worked hours'
       unestimated: 'unestimated'
@@ -50,6 +50,7 @@ en:
         title: 'Loading title ...'
 
     milestones:
+      unassigned: 'Unassigned'
       loading:
         title: 'Loading title ...'
       settings:
@@ -60,5 +61,3 @@ en:
       update:
         succeed: 'Changes applied'
         failed: 'Date error'
-      accordion:
-        unassigned: 'Unassigned'

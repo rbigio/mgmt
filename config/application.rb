@@ -55,5 +55,7 @@ module Mgmt
 
     # Github
     AppConfiguration.for(:github)
+
+    #config.assets.paths << "#{Rails.root}/app/assets/views"
   end
 end

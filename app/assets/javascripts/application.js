@@ -16,11 +16,10 @@
 //= require twitter/bootstrap
 //= require github
 //= require script_for
-//= require underscore
-//= require backbone
-//= require backbone_rails_sync
-//= require backbone_datalink
-//= require backbone/mgmt
 //= require i18n
 //= require i18n/translations
-//= require_tree .
+//= require_tree ./angular/directives
+//= require_tree ./angular/services
+//= require_tree ./angular/controllers
+//= require ./angular/mgmt
+//= require ./bootstrap

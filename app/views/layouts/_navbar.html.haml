@@ -1,10 +1,10 @@
 .navbar.navbar-fixed-top
   .navbar-inner
     .container
-      %a.brand{ href: root_path } MGMT
+      %a.brand{ href: '/#/' } MGMT
       %ul.nav
         %li
-          %a{ href: projects_path }= t('views.navbar.projects')
+          %a{ href: '/#/projects' }= t('views.navbar.projects')
       %ul.nav.pull-right
         %li
           %form.navbar-search.pull-right
@@ -13,6 +13,6 @@
         %li
           %p.navbar-text= current_user.name.split(" ").each(&:capitalize).join(" ")
         %li.divider-vertical
-        %li 
+        %li
           .navbar-text
             %img{ src: current_user.organization_avatar, width: '30px' }

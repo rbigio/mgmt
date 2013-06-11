@@ -11,7 +11,6 @@ gem 'simple_form', github: 'plataformatec/simple_form'
 gem 'devise', github: 'plataformatec/devise', branch: 'rails4'
 gem 'omniauth'
 gem 'omniauth-github'
-gem 'rails-backbone', '~> 0.9.10'
 gem 'inherited_resources'
 gem 'app_configuration'
 gem 'unicorn'
@@ -19,6 +18,7 @@ gem 'foreman'
 gem 'coveralls', require: false
 gem 'option'
 gem 'i18n-js'
+gem 'underscore-rails'
 
 group :assets do
   gem 'sprockets-rails',  github: 'rails/sprockets-rails'
@@ -33,6 +33,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+  gem 'watchr'
 end
 
 group :test, :development do

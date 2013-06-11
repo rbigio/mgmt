@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-%html{lang: "#{I18n.locale}"}
+%html{lang: "#{I18n.locale}", 'ng-app' => 'mgmt'}
   %head
     %meta{charset: "UTF-8"}
     %title MGMT
-    = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
+    = stylesheet_link_tag "application", :media => "all"
     = csrf_meta_tags
-  %script{'type' => 'text/javascript'}
-    ="I18n.defaultLocale = '#{I18n.default_locale.to_s}'"
-    ="I18n.locale = '#{I18n.locale.to_s}'"
-  %body{'data-token' => "#{current_user.token if user_signed_in?}", |
-        'data-controller' => controller.controller_name,            |
+  %body{'data-controller' => controller.controller_name,            |
         'data-action' => controller.action_name,                    |
         'data-organization' => organization}                        |
     - if user_signed_in?
       = render partial: 'layouts/navbar'
     = render partial: 'layouts/alert'
     .container= yield
+    %div{'ng-view' => ''}
+
+  %script{'src' => '//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.js'}
+  %script{'src' => '//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-resource.js'}
+  %script{'src' => '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js'}
+  %script{'src' => 'http://cdn.jsdelivr.net/restangular/latest/restangular.js'}
+  %script{'type' => 'text/javascript'}
+    = "window.mgmt = { organization: '#{organization}', token: '#{current_user.token if user_signed_in?}'}"
+  = javascript_include_tag 'application'
+  %script{'type' => 'text/javascript'}
+    ="I18n.defaultLocale = '#{I18n.default_locale.to_s}'"
+    ="I18n.locale = '#{I18n.locale.to_s}'"

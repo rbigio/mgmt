@@ -17,7 +17,7 @@
   %script{'src' => '//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.js'}
   %script{'src' => '//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-resource.js'}
   %script{'src' => '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js'}
-  %script{'src' => 'http://cdn.jsdelivr.net/restangular/latest/restangular.js'}
+  %script{'src' => 'http://cdn.jsdelivr.net/restangular/0.8.2/restangular.js'}
   %script{'type' => 'text/javascript'}
     = "window.mgmt = { organization: '#{organization}', token: '#{current_user.token if user_signed_in?}'}"
   = javascript_include_tag 'application'

@@ -1,12 +1,19 @@
-services = angular.module('mgmt.services', ['restangular']);
+services = angular.module('mgmt.services', ['restangular'])
 
-services.config((RestangularProvider) ->
-  RestangularProvider.setBaseUrl("https://api.github.com/orgs/" + window.mgmt.organization)
+# services.config((RestangularProvider) ->
+#   # Not necesary
+#   RestangularProvider.setBaseUrl('http://localhost:3000');
+# )
+
+services.factory('GithubRestangular', (Restangular) ->
+  Restangular.withConfig((RestangularConfigurer) ->
+    RestangularConfigurer.setBaseUrl('https://api.github.com/orgs/' + window.mgmt.organization)
+  )
 )
 
-services.factory('Projects', ['Restangular', (Restangular) ->
+services.factory('Projects', (GithubRestangular) ->
   () ->
-    Restangular.all('repos').getList(
+    GithubRestangular.all('repos').getList(
       'type': 'all',
       'per_page': 1000,
       'sort': 'updated',
@@ -21,4 +28,4 @@ services.factory('Projects', ['Restangular', (Restangular) ->
         type: if p.private then 'private' else 'public'
       )
     )
-])
+)

@@ -16,10 +16,7 @@ module.config(['$routeProvider', '$locationProvider', ($routeProvider, $location
   ).when('/projects/:name',
     controller: 'ViewProjectCtrl',
     resolve:
-      project: (Restangular, $route) ->
-        Restangular.one('projects', $route.current.params.name).get(
-          organization: window.mgmt.organization
-        )
+      project: (Project) -> Project()
     ,
     templateUrl:'/assets/projects/show.html'
   ).otherwise(

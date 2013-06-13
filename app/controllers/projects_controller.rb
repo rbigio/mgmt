@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
     result = project.as_json
     result['issues'] = project.issues.as_json
     result['milestones'] = project.milestones.as_json
+    result['currentMilestone'] = project.current_milestone
 
     render :json => result
   end

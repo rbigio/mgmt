@@ -1,0 +1,40 @@
+%li.issue.js-issue
+  X{{title}}
+  X{{number}}
+  X{{issue_type}}
+  X{{estimated_hours}}
+  X{{github_status}}
+  X{{status}}
+  / .first-row
+  /   .info.pull-left
+  /     %div
+  /       %div
+  /         %a.js-issue-link{href: '#'}= "##{issue.number}"
+  /         %span.js-issue-title= t('views.issues.loading.title')
+  /     %div
+  /       .item.pull-left
+  /         -::Issue::ACTIONS.each do |action, status|
+  /           %a.js-status.btn.btn-mini{href: '#', "data-status" => "#{status}", "data-action" => "#{action}", class: "#{action_visibility(issue, action)} #{action_color(action)}"}= "#{action.capitalize}"
+  /       .item.pull-left
+  /         %select.type-switch.js-type
+  /           - Issue::TYPE.each do |type|
+  /             - if type == issue.issue_type
+  /               %option{value: type, selected: 'selected'}= t("views.issues.type.#{type}")
+  /             - else
+  /               %option{value: type}= t("views.issues.type.#{type}")
+  /       .item.pull-left
+  /         %span.js-github-status{href: "#", class: issue.github_status}= issue.github_status
+  /       .item.pull-left
+  /         %span{title: t('views.issues.estimated.long')}= "#{t('views.issues.estimated.short')}:"
+  /         %input.eh.js-eh{value: (issue.estimated_hours) ? issue.estimated_hours : 0, type: 'number', step: '0.5', min: 0}
+  /       .item.pull-left
+  /         %span{title: t('views.issues.worked.long')}= "#{t('views.issues.worked.short')}:"
+  /         %input.wh.js-wh{value: issue.worked_hours, type: 'number', step: '0.5', min: 0}
+
+  / .dates
+  /   .pull-left
+  /     %span= t('views.issues.created_at')
+  /     %abbr.js-timeago{title: issue.created_at.strftime('%FT%T%:z') }= issue.created_at
+  /   .pull-right
+  /     %span= t('views.issues.updated_at')
+  /     %abbr.js-timeago{title: issue.updated_at.strftime('%FT%T%:z') }= issue.updated_at

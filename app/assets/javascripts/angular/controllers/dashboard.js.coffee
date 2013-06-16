@@ -1,4 +1,2 @@
-module = angular.module('mgmt.controllers', []);
-
-module.controller('DashboardCtrl', ['$scope', ($scope) ->
+angular.module('mgmt.controllers').controller('DashboardCtrl', ['$scope', ($scope) ->
 ])

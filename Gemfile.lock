@@ -267,7 +267,6 @@ GEM
     uglifier (2.1.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    underscore-rails (1.4.4)
     unicorn (4.6.2)
       kgio (~> 2.6)
       rack
@@ -315,6 +314,5 @@ DEPENDENCIES
   timecop
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
-  underscore-rails
   unicorn
   watchr

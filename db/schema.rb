@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130510183231) do
+ActiveRecord::Schema.define(version: 20130607200941) do
 
   create_table "alerts", force: true do |t|
     t.integer  "milestone_id"
@@ -55,15 +55,24 @@ ActiveRecord::Schema.define(version: 20130510183231) do
 
   add_index "projects", ["organization", "name"], name: "index_projects_on_organization_and_name", unique: true, using: :btree
 
+  create_table "team_members", force: true do |t|
+    t.integer  "users_id"
+    t.integer  "team_id"
+    t.integer  "dedication"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "team_members", ["team_id"], name: "index_team_members_on_team_id", using: :btree
+  add_index "team_members", ["users_id"], name: "index_team_members_on_users_id", using: :btree
+
   create_table "teams", force: true do |t|
     t.integer  "project_id"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "teams", ["project_id"], name: "index_teams_on_project_id", using: :btree
-  add_index "teams", ["user_id"], name: "index_teams_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"

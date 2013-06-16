@@ -5,29 +5,18 @@
 /   .pull-right#pull-requests
 /     = t("views.filters.pull_requests")
 /     .btn-group{'data-toggle' => "buttons-radio"}
-/       %button.btn.btn-mini.btn-success.js-on
+/       %button.btn.btn-mini.btn-success
 /         = t("views.filters.on")
-/       %button.btn.btn-mini.btn-danger.js-off
+/       %button.btn.btn-mini.btn-danger
 /         = t("views.filters.off")
 .row-fluid#milestones
-  %div#issues
-    %div
-      .current-milestone.js-milestone.span6{'data-milestone-number' => '{{project.currentMilestone.number}}'} {{project.currentMilestone.title}}
+  .issues
+    .span6
+      .current-milestone {{project.currentMilestone.title}}
       %div{'ng-repeat' => 'issue in project.currentMilestone.issues'}
-        %div {{issue}}
-
+        %mgmt:issue{'type' => '{{issue.issue_type}}', 'title' => '{{issue.title}}', 'number' => '{{issue.number}}', 'status' => '{{issue.status}}', 'state' => '{{issue.state}}', 'status' => '{{issue.status}}','estimated-hours' => '{{issue.estimated_hours}}', 'worked-hours' => '{{issue.worked_hours}}', 'created-at' => '{{issue.created_at}}', 'updated-at' => '{{issue.updated_at}}'}
     .backlog.span6
-      .accordion.milestones#milestonesAccordion
-        %div{'ng-repeat' => 'milestone in project.milestones'}
-          .accordion-group.milestone.js-milestone{'data-milestone-number' => "{{milestone.number}}"}
-            .accordion-heading {{milestone.title}}
-            %div{'ng-repeat' => 'issue in milestone.issues'}
-              {{issue}}
-              {{issue.number}}
-              %mgmt:issue{'title' => '{{issue.title}}', 'number' => '{{issue.number}}', 'status' => '{{issue.status}}', 'issueType' => '{{issue.issueType}}', 'githubStatus' => '{{issue.githubStatus}}', 'status' => '{{issue.status}}'}
-            /   / = render partial: 'milestone_title', locals: { number: number }
-            / .accordion-body.collapse.in{ id: "milestone_#{number}"}
-            /   - issues.each do |issue|
-            /     = render partial: 'projects/issue', locals: { issue: issue }
-
-{{project}}
+      %accordion.milestones{'close-other' => 'true'}
+        %accordion-group{'heading' => '{{milestone.title}}', 'ng-repeat' => 'milestone in project.milestones'}
+          %div{'ng-repeat' => 'issue in milestone.issues'}
+            %mgmt:issue{'type' => '{{issue.issue_type}}', 'title' => '{{issue.title}}', 'number' => '{{issue.number}}', 'status' => '{{issue.status}}', 'state' => '{{issue.state}}', 'status' => '{{issue.status}}','estimated-hours' => '{{issue.estimated_hours}}', 'worked-hours' => '{{issue.worked_hours}}', 'created-at' => '{{issue.created_at}}', 'updated-at' => '{{issue.updated_at}}'}

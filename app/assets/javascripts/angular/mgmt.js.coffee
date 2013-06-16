@@ -1,4 +1,4 @@
-module = angular.module('mgmt', ['mgmt.controllers', 'mgmt.services', 'mgmt.directives'])
+module = angular.module('mgmt', ['ui.bootstrap', 'mgmt.controllers', 'mgmt.services', 'mgmt.directives'])
 
 module.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
   # $locationProvider.hashPrefix('!')

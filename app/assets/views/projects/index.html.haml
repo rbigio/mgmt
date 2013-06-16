@@ -1,9 +1,9 @@
-%div#projects
-  %div
-    Proyectos públicos
-    %mgmt:projects{'items' => 'public'}
+%div
+  / = t('views.projects.public')
+  %h2 Proyectos públicos 
+  %mgmt:projects{'items' => 'public'}
 
-  %div
-    Proyectos privados
-    %mgmt:projects{'items' => 'private'}
-</div>
+%div
+  / = t('views.projects.private')
+  %h2 Proyectos privados
+  %mgmt:projects{'items' => 'private'}
